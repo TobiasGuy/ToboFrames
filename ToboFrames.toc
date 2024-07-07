@@ -1,0 +1,17 @@
+## Interface: 
+## Title: ToboFrames
+## Notes: Scales blizzard frames up for lower UI scales
+## Author: Tobo - github.com/TobiasGuy/ToboFrames/
+## IconTexture: 
+## X-WoWI-ID: 
+## X-Curse-Project-ID: 
+## Version: 
+## OptionalDeps: 
+## X-Embeds: 
+## SavedVariables: ToboFramesDB
+
+# Libraries
+Libs\Libs.xml
+
+# Add-On
+ToboFrames.lua
