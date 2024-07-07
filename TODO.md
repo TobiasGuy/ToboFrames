@@ -9,4 +9,7 @@ Define usage in description
 Figure out how to do the release version stuff on github
 Post on addon site
 Scale seems quite high atm, maybe dilute the numbers a bit
-List of all frames that you can checkmark to resize or not? checkmark all by default
+List of all frames that you can checkmark to resize or not? checkmark all by default (maybe add optional ones that are not enabled by default) add check when looping through FrameNames to see if it's enabled or not.
+    Default button to return to default frames enabled
+Think about subframes, not exactly sure how that works
+Think about changing name of slash command
