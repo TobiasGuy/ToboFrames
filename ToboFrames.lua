@@ -43,7 +43,7 @@ function ToboFrames:CreateSlashCommand()
         if scale and scale > 0 then
             ToboFramesDB.scale = scale
             ToboFrames:ResizeFrames(scale)
-            print("Character panel scale set to " .. scale)
+            print("Frame scale set to " .. scale)
         else
             print("Usage: /cpr <scale> (e.g., /cpr 1.2)")
         end

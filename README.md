@@ -27,3 +27,9 @@ Defined usage in description
 Added the function to resize all subframes of each frame being resized.
 This made everything weird though so it's disabled.
 Think I don't need to have this and it all happens naturally, functionality is there though if it's needed for something later
+
+## 1.6 Adding more frames
+Fixed wording in slash command
+Started to add more frames
+Need to find a way to find all frames I want quicker
+Created a bug where some frames do not get resized on login, but will get resized after slash command
