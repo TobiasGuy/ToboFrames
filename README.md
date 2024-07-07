@@ -19,3 +19,6 @@ Made the function resize all frames within the FrameNames.lua file, just added a
 Slash command now saves the scale
 Applied scale on login/reload
 Made default scale 1.0
+
+## 1.4 Define Usage
+Defined usage in description
