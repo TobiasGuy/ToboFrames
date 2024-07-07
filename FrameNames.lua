@@ -1,0 +1,5 @@
+FrameNames = {
+    "CharacterFrame",
+    "SpellBookFrame",
+    "TalentFrame",
+}

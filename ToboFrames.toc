@@ -5,7 +5,7 @@
 ## IconTexture: 
 ## X-WoWI-ID: 
 ## X-Curse-Project-ID: 
-## Version: 1.1
+## Version: 1.2
 ## OptionalDeps: 
 ## X-Embeds: 
 ## SavedVariables: ToboFramesDB
@@ -15,3 +15,4 @@ Libs\Libs.xml
 
 # Add-On
 ToboFrames.lua
+FrameNames.lua

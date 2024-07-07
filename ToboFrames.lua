@@ -2,9 +2,12 @@
 ToboFrames = {}
 
 -- Function to resize the character panel
-function ToboFrames:ResizeCharacterPanel(scale)
-    if CharacterFrame then
-        CharacterFrame:SetScale(scale)
+function ToboFrames:ResizeFrames(scale)
+    for _, Frame in ipairs(FrameNames) do
+        local CurrentFrame = _G[Frame]
+        if CurrentFrame then
+            CurrentFrame:SetScale(scale)
+        end
     end
 end
 
@@ -14,7 +17,7 @@ function ToboFrames:CreateSlashCommand()
     SlashCmdList["CPR"] = function(msg)
         local scale = tonumber(msg)
         if scale and scale > 0 then
-            ToboFrames:ResizeCharacterPanel(scale)
+            ToboFrames:ResizeFrames(scale)
             print("Character panel scale set to " .. scale)
         else
             print("Usage: /cpr <scale> (e.g., /cpr 1.2)")

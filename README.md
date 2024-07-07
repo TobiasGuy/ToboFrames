@@ -10,3 +10,7 @@ Initialised Libs\Libs.xml
 Added interface number 100207
 Made feature to resize character panel with /cpr chat command, wanted to get something quick and easy that works so I can test (start small)
 Keeping track of things to do in TODO.md
+
+## 1.2
+Initialised FrameNames.lua
+Made the function resize all frames within the FrameNames.lua file, just added a few frames for now. Lots of frames to add there

@@ -8,3 +8,5 @@ Profiles? (Global profile for all characters because it's really annoying for us
 Define usage in description
 Figure out how to do the release version stuff on github
 Post on addon site
+Scale seems quite high atm, maybe dilute the numbers a bit
+List of all frames that you can checkmark to resize or not? checkmark all by default
