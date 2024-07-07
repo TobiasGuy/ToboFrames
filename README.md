@@ -22,3 +22,8 @@ Made default scale 1.0
 
 ## 1.4 Define Usage
 Defined usage in description
+
+## 1.5 Scale subframes
+Added the function to resize all subframes of each frame being resized.
+This made everything weird though so it's disabled.
+Think I don't need to have this and it all happens naturally, functionality is there though if it's needed for something later

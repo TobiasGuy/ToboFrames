@@ -9,7 +9,21 @@ function ToboFrames:ResizeFrames(scale)
     for _, Frame in ipairs(FrameNames) do
         local CurrentFrame = _G[Frame]
         if CurrentFrame then
-            CurrentFrame:SetScale(scale)
+            CurrentFrame:SetScale(scale) -- Can re-enable this to remove the subframes function if I decide to go back
+            -- ToboFrames:ResizeSubFrames(CurrentFrame, scale) -- Re-enable to resize subframes
+        end
+    end
+end
+
+function ToboFrames:ResizeSubFrames(frame, scale)
+    if frame and frame:IsObjectType("Frame") then
+        frame:SetScale(scale)
+        local i = 1
+        while true do
+            local child = select(i, frame:GetChildren())
+            if not child then break end
+            ToboFrames:ResizeSubFrames(child, scale)
+            i = i + 1
         end
     end
 end

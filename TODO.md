@@ -10,6 +10,7 @@ List of all frames that you can checkmark to resize or not? checkmark all by def
     Default button to return to default frames enabled
 Think about subframes, not exactly sure how that works
 Think about changing name of slash command
+Function to auto-resize based on UI scale, maybe have a conversion with 0.53 current and 0.71 desired for example
 
 DONE LIST
 
