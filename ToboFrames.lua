@@ -50,16 +50,41 @@ function ToboFrames:CreateSlashCommand()
     end
 end
 
+-- Hook function to resize frame when it is shown
+function ToboFrames:HookFrame(Frame, scale)
+    local frame = _G[Frame]
+    -- local scale = ToboFramesDB and ToboFramesDB.scale or defaultScale
+    if frame then
+        frame:HookScript("OnShow", function()
+            ToboFrames:ResizeFrames(frame, scale) 
+        end)
+    end
+end
+
 -- Initialize the addon
 local function OnEvent(self, event, ...)
     if event == "ADDON_LOADED" and ... == "ToboFrames" then
         ToboFramesDB = ToboFramesDB or {}
         ToboFrames:CreateSlashCommand()
+    elseif event == "PLAYER_LOGIN" then
         ToboFrames:ApplySavedScale()
+        -- C_Timer.After(5, function() ToboFrames:ApplySavedScale() end)
+    -- elseif event == "PLAYER_ENTERING_WORLD" then
+    --     -- Hook frames that load later. Add more frames as they are found to cause issues.
+    --     local scale = ToboFramesDB and ToboFramesDB.scale or defaultScale
+    --     ToboFrames:HookFrame("AchievementFrame", scale)
+    --     -- Add more frames here if necessary
+    elseif event == "ADDON_LOADED" and ... == "Blizzard_AchievementUI" then
+        local scale = ToboFramesDB and ToboFramesDB.scale or defaultScale
+        -- ToboFrames:HookFrame("AchievementFrame")
+        -- ToboFrames:ApplySavedScale()
+        AchievementFrame:SetScale(scale)
     end
 end
 
 -- Register event handler
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
+frame:RegisterEvent("PLAYER_LOGIN")
+-- frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:SetScript("OnEvent", OnEvent)

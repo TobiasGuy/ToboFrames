@@ -13,6 +13,9 @@ Function to auto-resize based on UI scale, maybe have a conversion with 0.53 cur
 Functionality for classic/earlier versions of wow?
 Scale addon frames?
 Add your own frames to be scaled? (Also suggestions functionality for frames to be added)
+Maybe make a separate .lua file for frames that need to be hooked OnShow, or a separate constructor in the same FrameNames.lua file.
+Make a more elegant solution for the "elseif event == "ADDON_LOADED" and ... == "Blizzard_AchievementUI" then" so it's reusable
+Make a dict of addon names corresponding frames 
 
 DONE LIST
 

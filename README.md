@@ -33,3 +33,8 @@ Fixed wording in slash command
 Started to add more frames
 Need to find a way to find all frames I want quicker
 Created a bug where some frames do not get resized on login, but will get resized after slash command
+
+## 1.6.5 Bugfix on login
+Added event listener for PLAYER_LOGIN to call the ApplySavedScale function instead of on ADDON_LOADED because some frames are not loaded at this point
+This did not work for AchievementFrame (and probably more frames I have not found yet) so I added a check for "event == "ADDON_LOADED" and ... == "Blizzard_AchievementUI" and then resized the AchievementFrame there, as it is tied to the addon Blizzard_AchievementUI. Need to make a more reusable solution for this
+Made a HookFrame function, did not work as I wanted it to, leaving it there incase there's a use in the future. Should clean up later if it goes unused
