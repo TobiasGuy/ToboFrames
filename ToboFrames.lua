@@ -7,10 +7,23 @@ local defaultScale = 1.0
 -- Function to resize the character panel
 function ToboFrames:ResizeFrames(scale)
     for _, Frame in ipairs(FrameNames) do
-        local CurrentFrame = _G[Frame]
+        local CurrentFrame = _G[Frame.frame]
         if CurrentFrame then
             CurrentFrame:SetScale(scale) -- Can re-enable this to remove the subframes function if I decide to go back
             -- ToboFrames:ResizeSubFrames(CurrentFrame, scale) -- Re-enable to resize subframes
+        elseif Frame.addon then
+            -- Register for the addon loaded event for this specific addon
+            local addonLoadedFrame = CreateFrame("Frame")
+            addonLoadedFrame:RegisterEvent("ADDON_LOADED")
+            addonLoadedFrame:SetScript("OnEvent", function(self, event, addon)
+                if event == "ADDON_LOADED" and addon == Frame.addon then
+                    local scale = ToboFramesDB and ToboFramesDB.scale or defaultScale
+                    local frame = _G[Frame.frame]
+                    if frame then
+                        frame:SetScale(scale)
+                    end
+                end
+            end)
         end
     end
 end
@@ -32,7 +45,7 @@ end
 function ToboFrames:ApplySavedScale()
     local scale = ToboFramesDB and ToboFramesDB.scale or defaultScale
     ToboFrames:ResizeFrames(scale)
-    print("Applied saved frame scale: " .. scale)
+    print("Applied frame scale: " .. scale)
 end
 
 -- Function to create a slash command to set the scale
@@ -68,17 +81,9 @@ local function OnEvent(self, event, ...)
         ToboFrames:CreateSlashCommand()
     elseif event == "PLAYER_LOGIN" then
         ToboFrames:ApplySavedScale()
-        -- C_Timer.After(5, function() ToboFrames:ApplySavedScale() end)
-    -- elseif event == "PLAYER_ENTERING_WORLD" then
-    --     -- Hook frames that load later. Add more frames as they are found to cause issues.
+    -- elseif event == "ADDON_LOADED" and ... == "Blizzard_AchievementUI" then
     --     local scale = ToboFramesDB and ToboFramesDB.scale or defaultScale
-    --     ToboFrames:HookFrame("AchievementFrame", scale)
-    --     -- Add more frames here if necessary
-    elseif event == "ADDON_LOADED" and ... == "Blizzard_AchievementUI" then
-        local scale = ToboFramesDB and ToboFramesDB.scale or defaultScale
-        -- ToboFrames:HookFrame("AchievementFrame")
-        -- ToboFrames:ApplySavedScale()
-        AchievementFrame:SetScale(scale)
+    --     AchievementFrame:SetScale(scale)
     end
 end
 
@@ -86,5 +91,4 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_LOGIN")
--- frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:SetScript("OnEvent", OnEvent)

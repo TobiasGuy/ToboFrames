@@ -38,3 +38,9 @@ Created a bug where some frames do not get resized on login, but will get resize
 Added event listener for PLAYER_LOGIN to call the ApplySavedScale function instead of on ADDON_LOADED because some frames are not loaded at this point
 This did not work for AchievementFrame (and probably more frames I have not found yet) so I added a check for "event == "ADDON_LOADED" and ... == "Blizzard_AchievementUI" and then resized the AchievementFrame there, as it is tied to the addon Blizzard_AchievementUI. Need to make a more reusable solution for this
 Made a HookFrame function, did not work as I wanted it to, leaving it there incase there's a use in the future. Should clean up later if it goes unused
+
+## 1.7 Addon frames
+Removed some commented out code to clean things up a bit
+Changed FrameNames.lua to have a section for addon frames
+Made the code handling addon frames more reusable so this should fix my problem for everything I need
+Added MacroFrame to the addon frames list
