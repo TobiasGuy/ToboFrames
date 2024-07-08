@@ -1,11 +1,11 @@
 ## Interface: 100207
 ## Title: ToboFrames
 ## Notes: Scales blizzard frames up for lower UI scales. Usage: /cpr <scale> (e.g., /cpr 1.2)
-## Author: Tobo - github.com/TobiasGuy/ToboFrames/
+## Author: Tobo - github.com/TobiasGuy/ToboFrames/ - twitch.tv/tobo
 ## IconTexture: 
 ## X-WoWI-ID: 
 ## X-Curse-Project-ID: 
-## Version: 1.7
+## Version: 1.8
 ## OptionalDeps: 
 ## X-Embeds: 
 ## SavedVariables: ToboFramesDB

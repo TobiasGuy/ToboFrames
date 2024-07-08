@@ -44,3 +44,6 @@ Removed some commented out code to clean things up a bit
 Changed FrameNames.lua to have a section for addon frames
 Made the code handling addon frames more reusable so this should fix my problem for everything I need
 Added MacroFrame to the addon frames list
+
+## 1.8 Adding a lot more frames
+As the title says, added a ton of frames, not entirely sure on things I'm missing, think I have a lot of things covered. Next expansion might take some work to upkeep though in hindsight lmao
