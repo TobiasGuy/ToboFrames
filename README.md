@@ -47,3 +47,6 @@ Added MacroFrame to the addon frames list
 
 ## 1.8 Adding a lot more frames
 As the title says, added a ton of frames, not entirely sure on things I'm missing, think I have a lot of things covered. Next expansion might take some work to upkeep though in hindsight lmao
+
+### 1.8.1 Updating todo list
+

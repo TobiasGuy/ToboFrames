@@ -5,7 +5,7 @@
 ## IconTexture: 
 ## X-WoWI-ID: 
 ## X-Curse-Project-ID: 
-## Version: 1.8
+## Version: 1.8.1
 ## OptionalDeps: 
 ## X-Embeds: 
 ## SavedVariables: ToboFramesDB
