@@ -50,3 +50,8 @@ As the title says, added a ton of frames, not entirely sure on things I'm missin
 
 ### 1.8.1 Updating todo list
 
+### 1.9 Config frame
+Created config frame
+Added slider to change value
+Can right click the number to edit the value in text
+Opened with /cpr

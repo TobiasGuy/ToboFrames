@@ -1,7 +1,5 @@
 TODO LIST
 
-Find all frames that need resizing
-Make interface with slider? or just chat command? decide later, chat command for now
 Profiles? (Global profile for all characters because it's really annoying for users if not)
 Figure out how to do the release version stuff on github
 Post on addon site
@@ -24,3 +22,5 @@ Think about subframes, not exactly sure how that works
 Make a dict of addon names corresponding frames 
 Make a more elegant solution for the "elseif event == "ADDON_LOADED" and ... == "Blizzard_AchievementUI" then" so it's reusable
 Scale addon frames
+Make interface with slider
+Find all frames that need resizing
