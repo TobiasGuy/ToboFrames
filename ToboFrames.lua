@@ -51,11 +51,16 @@ end
 -- Function to create the UI / config frame
 function ToboFrames:CreateConfigFrame()
     local configFrame = CreateFrame("Frame", "ToboFramesConfigFrame", UIParent, "BasicFrameTemplateWithInset")
-    configFrame:SetSize(300, 200)
+    configFrame:SetSize(300, 250)
     configFrame:SetPoint("CENTER")
+    configFrame:SetMovable(true)
+    configFrame:EnableMouse(true)
+    configFrame:RegisterForDrag("LeftButton")
+    configFrame:SetScript("OnDragStart", configFrame.StartMoving)
+    configFrame:SetScript("OnDragStop", configFrame.StopMovingOrSizing)
     configFrame.title = configFrame:CreateFontString(nil, "OVERLAY")
     configFrame.title:SetFontObject("GameFontHighlight")
-    configFrame.title:SetPoint("CENTER", configFrame.TitleBg, "CENTER", 5, 0)
+    configFrame.title:SetPoint("CENTER", configFrame.TitleBg, "CENTER", 0, 0)
     configFrame.title:SetText("Tobo Frames")
 
     -- Scale slider
@@ -128,6 +133,56 @@ function ToboFrames:CreateConfigFrame()
     scaleValueEditBox:SetScript("OnEscapePressed", function(self)
         self:Hide()
         scaleSlider.value:Show()
+    end)
+
+    -- Section to calculate UI scale conversions
+    local customScaleLabel = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    customScaleLabel:SetPoint("TOP", scaleSlider, "BOTTOM", 0, -40)
+    customScaleLabel:SetText("Custom Scale Calculation")
+
+    -- First edit box
+    local firstEditBox = CreateFrame("EditBox", "ToboFramesFirstEditBox", configFrame, "InputBoxTemplate")
+    firstEditBox:SetAutoFocus(false)
+    firstEditBox:SetWidth(50)
+    firstEditBox:SetHeight(20)
+    firstEditBox:SetPoint("TOP", customScaleLabel, "BOTTOM", -100, -30)
+
+    -- Label for the first edit box
+    local currentUiScaleLabel = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    currentUiScaleLabel:SetPoint("BOTTOMLEFT", firstEditBox, "TOPLEFT", -1, 3)
+    currentUiScaleLabel:SetText("Current UI scale:")
+
+    -- Second edit box with default value 0.71
+    local secondEditBox = CreateFrame("EditBox", "ToboFramesSecondEditBox", configFrame, "InputBoxTemplate")
+    secondEditBox:SetAutoFocus(false)
+    secondEditBox:SetWidth(50)
+    secondEditBox:SetHeight(20)
+    secondEditBox:SetPoint("LEFT", firstEditBox, "RIGHT", 100, 0)
+    secondEditBox:SetText("0.71")
+
+    -- Label for the second edit box
+    local desiredUiScaleLabel = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    desiredUiScaleLabel:SetPoint("BOTTOMLEFT", secondEditBox, "TOPLEFT", -1, 3)
+    desiredUiScaleLabel:SetText("Desired UI scale:")
+
+    -- Set Scale Button
+    local setScaleButton = CreateFrame("Button", "ToboFramesSetScaleButton", configFrame, "GameMenuButtonTemplate")
+    setScaleButton:SetPoint("TOP", firstEditBox, "BOTTOM", 25, -10)
+    setScaleButton:SetSize(100, 25)
+    setScaleButton:SetText("Set Scale")
+
+    -- Set Scale Button OnClick script
+    setScaleButton:SetScript("OnClick", function()
+        local firstValue = tonumber(firstEditBox:GetText())
+        local secondValue = tonumber(secondEditBox:GetText())
+        if firstValue and secondValue then
+            local newScale = secondValue / firstValue
+            ToboFramesDB.scale = newScale
+            ToboFrames:ApplySavedScale()
+            scaleSlider:SetValue(newScale)
+        else
+            print("Invalid input. Please enter valid numbers.")
+        end
     end)
 
     -- Show the configuration frame

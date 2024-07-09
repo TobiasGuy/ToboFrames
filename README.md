@@ -55,3 +55,9 @@ Created config frame
 Added slider to change value
 Can right click the number to edit the value in text
 Opened with /cpr
+
+### 1.10 Custom scale
+Added the option to put in the current user scale and the desired user scale, and work out the difference between them
+Made the config frame draggable
+Made the slider not apply scale until it's released
+Slider was giving some weird decimal values so I made it round to 1dp
