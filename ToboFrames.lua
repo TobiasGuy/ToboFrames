@@ -218,15 +218,11 @@ end
 
 -- Function to get visible frame names and return them
 function ToboFrames:GetVisibleFrames()
-    local visibleFrames = {}
-    local frameList = EnumerateFrames()
-    while frameList do
-        if frameList:IsVisible() and frameList:GetName() then
-            table.insert(visibleFrames, frameList:GetName())
-        end
-        frameList = EnumerateFrames(frameList)
-    end
-    return visibleFrames
+    self:CreateFrameListPopup()
+    local popup = self.frameListPopup
+    popup:Show()
+
+    self:UpdateFrameList()
 end
 
 -- Function to toggle the configuration frame
@@ -239,6 +235,109 @@ function ToboFrames:ToggleConfigFrame()
     else
         self.configFrame:Show()
     end
+end
+
+function ToboFrames:UpdateFrameList(searchTerm)
+    local popup = self.frameListPopup
+    local scrollChild = popup.scrollChild
+
+    -- Clear previous content
+    if scrollChild.frameTexts then
+        for _, frameText in ipairs(scrollChild.frameTexts) do
+            frameText:Hide()
+            frameText:SetParent(nil)
+        end
+    end
+    scrollChild.frameTexts = {}
+
+    -- Reset scroll child height
+    scrollChild:SetHeight(1)
+
+    local frameNames = {}
+    local frameList = EnumerateFrames()
+    while frameList do
+        if frameList:IsVisible() and frameList:GetName() then
+            local frameName = frameList:GetName()
+            if not searchTerm or searchTerm == "Search" or frameName:lower():find(searchTerm:lower()) then
+                table.insert(frameNames, frameName)
+            end
+        end
+        frameList = EnumerateFrames(frameList)
+    end
+
+    -- Sort frame names alphabetically
+    table.sort(frameNames)
+
+    local yOffset = 0
+    for _, frameName in ipairs(frameNames) do
+        local frameText = scrollChild:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        frameText:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 5, -yOffset)
+        frameText:SetText(frameName)
+        yOffset = yOffset + 20
+        table.insert(scrollChild.frameTexts, frameText)
+    end
+
+    scrollChild:SetHeight(math.max(yOffset, scrollChild:GetParent():GetHeight()))
+end
+
+-- Function to make the popup for the list of frames returned from GetVisibleFrames
+function ToboFrames:CreateFrameListPopup()
+    if self.frameListPopup then
+        return
+    end
+
+    local popup = CreateFrame("Frame", "ToboFramesListPopup", UIParent, "BasicFrameTemplateWithInset")
+    popup:SetSize(300, 400)
+    popup:SetPoint("CENTER")
+    popup:SetMovable(true)
+    popup:EnableMouse(true)
+    popup:RegisterForDrag("LeftButton")
+    popup:SetScript("OnDragStart", popup.StartMoving)
+    popup:SetScript("OnDragStop", popup.StopMovingOrSizing)
+    
+    popup.title = popup:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    popup.title:SetPoint("TOP", popup, "TOP", 0, -5)
+    popup.title:SetText("Visible Frames")
+
+    -- Create search box
+    popup.searchBox = CreateFrame("EditBox", nil, popup, "InputBoxTemplate")
+    popup.searchBox:SetPoint("TOPLEFT", popup, "TOPLEFT", 12, -25)
+    popup.searchBox:SetPoint("RIGHT", popup, "RIGHT", -30, 0)
+    popup.searchBox:SetHeight(20)
+    popup.searchBox:SetTextColor(1, 1, 1, 1)
+    popup.searchBox:SetText("Search")
+    popup.searchBox:SetAutoFocus(false)
+    popup.searchBox:SetScript("OnEditFocusGained", function(self)
+        if self:GetText() == "Search" then
+            self:SetText("")
+        end
+    end)
+    popup.searchBox:SetScript("OnEditFocusLost", function(self)
+        if self:GetText() == "" then
+            self:SetText("Search")
+        end
+    end)
+    popup.searchBox:SetScript("OnTextChanged", function(self)
+        local text = self:GetText()
+        if text ~= "Search" then
+            ToboFrames:UpdateFrameList(text)
+        end
+    end)
+
+    -- Create the scroll frame
+    local scrollFrame = CreateFrame("ScrollFrame", nil, popup, "UIPanelScrollFrameTemplate")
+    scrollFrame:SetPoint("TOPLEFT", popup.searchBox, "BOTTOMLEFT", 0, -10)
+    scrollFrame:SetPoint("BOTTOMRIGHT", popup, "BOTTOMRIGHT", -30, 10)
+
+    -- Create the scroll child frame
+    local scrollChild = CreateFrame("Frame")
+    scrollFrame:SetScrollChild(scrollChild)
+    scrollChild:SetSize(scrollFrame:GetWidth(), 1)
+
+    popup.scrollFrame = scrollFrame
+    popup.scrollChild = scrollChild
+
+    self.frameListPopup = popup
 end
 
 -- Function to create a slash command to set the scale
@@ -254,13 +353,10 @@ function ToboFrames:CreateSlashCommand()
             ToboFrames:ToggleConfigFrame()
         end
     end
-    
+
     SLASH_GETFRAMES1 = "/getframes"
     SlashCmdList["GETFRAMES"] = function(msg)
-        local visibleFrames = ToboFrames:GetVisibleFrames()
-        for _, frameName in ipairs(visibleFrames) do
-            print("Visible frame:", frameName)
-        end
+        ToboFrames:GetVisibleFrames()
     end
 end
 

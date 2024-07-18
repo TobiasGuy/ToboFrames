@@ -125,6 +125,7 @@ FrameNames = {
     { frame = "ReforgingFrame", addon = "Blizzard_ReforgingUI" },
     { frame = "RuneforgeFrame", addon = "Blizzard_RuneforgeUI" },
     { frame = "ScrappingMachineFrame", addon = "Blizzard_ScrappingMachineUI" },
+    { frame = "SettingsPanel", addon = "Blizzard_SettingsUI" },
     { frame = "SoulbindViewer", addon = "Blizzard_Soulbinds" },
     { frame = "StableFrame", addon = "Blizzard_StableUI" },
     { frame = "SubscriptionInterstitialFrame", addon = "Blizzard_SubscriptionInterstitialUI" },

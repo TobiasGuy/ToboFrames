@@ -64,3 +64,9 @@ Slider was giving some weird decimal values so I made it round to 1dp
 
 ## 1.11 Grab visible frame names
 Added a new slash command to get the currently shown frames and print them to the chat (mostly for development)
+
+## 1.12 Popup frame for GetVisibleFrames
+Made popup frame for GetVisibleFrames
+Made the list searchable
+Alphabetical order
+Had lots of bugfixing with text overlapping with new searches, searchbox text not going away while typing. Troubleshooted there
