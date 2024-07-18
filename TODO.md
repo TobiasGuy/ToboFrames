@@ -7,11 +7,14 @@ Scale seems quite high atm, maybe dilute the numbers a bit
 List of all frames that you can checkmark to resize or not? checkmark all by default (maybe add optional ones that are not enabled by default) add check when looping through FrameNames to see if it's enabled or not.
     Default button to return to default frames enabled
 Think about changing name of slash command
-Function to auto-resize based on UI scale, maybe have a conversion with 0.53 current and 0.71 desired for example
 Functionality for classic/earlier versions of wow?
 Option for users to add your own frames to be scaled? (Also suggestions functionality for frames to be added)
 Add new frames from TWW
 Add tooltips
+Resize elvui/weakauras frame??
+
+BUG LIST
+Options frame not resizing properly - fix
 
 DONE LIST
 
@@ -24,3 +27,5 @@ Make a more elegant solution for the "elseif event == "ADDON_LOADED" and ... == 
 Scale addon frames
 Make interface with slider
 Find all frames that need resizing
+Function to auto-resize based on UI scale, maybe have a conversion with 0.53 current and 0.71 desired for example
+Function to see currently loaded/visible frames

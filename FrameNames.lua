@@ -17,7 +17,6 @@ FrameNames = {
     { frame = "GuildInviteFrame" },
     { frame = "GuildRegistrarFrame" },
     { frame = "HelpFrame" },
-    { frame = "InterfaceOptionsFrame" },
     { frame = "ItemTextFrame" },
     { frame = "LFGParentFrame" },
     { frame = "LootFrame" },
@@ -143,7 +142,10 @@ FrameNames = {
     { frame = "WarboardQuestChoiceFrame", addon = "Blizzard_WarboardUI" },
     { frame = "WarfrontsPartyPoseFrame", addon = "Blizzard_WarfrontsPartyPoseUI" },
     { frame = "WeeklyRewardsFrame", addon = "Blizzard_WeeklyRewards" },
+    { frame = "GameTooltip", addon = "Blizzard_DebugTools" },
     -- { frame = "", addon = "Blizzard_" },
+    -- FRAMEXML InterfaceOptionsFrame 
+    -- https://wowpedia.fandom.com/wiki/Using_the_Interface_Options_Addons_panel
 }
 
 -- -- Addon frames

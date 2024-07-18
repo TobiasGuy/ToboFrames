@@ -216,6 +216,19 @@ function ToboFrames:ShowEditBox(anchor)
     self.editBox:SetFocus()
 end
 
+-- Function to get visible frame names and return them
+function ToboFrames:GetVisibleFrames()
+    local visibleFrames = {}
+    local frameList = EnumerateFrames()
+    while frameList do
+        if frameList:IsVisible() and frameList:GetName() then
+            table.insert(visibleFrames, frameList:GetName())
+        end
+        frameList = EnumerateFrames(frameList)
+    end
+    return visibleFrames
+end
+
 -- Function to toggle the configuration frame
 function ToboFrames:ToggleConfigFrame()
     if not self.configFrame then
@@ -239,6 +252,14 @@ function ToboFrames:CreateSlashCommand()
             print("Frame scale set to " .. scale)
         else
             ToboFrames:ToggleConfigFrame()
+        end
+    end
+    
+    SLASH_GETFRAMES1 = "/getframes"
+    SlashCmdList["GETFRAMES"] = function(msg)
+        local visibleFrames = ToboFrames:GetVisibleFrames()
+        for _, frameName in ipairs(visibleFrames) do
+            print("Visible frame:", frameName)
         end
     end
 end

@@ -50,14 +50,17 @@ As the title says, added a ton of frames, not entirely sure on things I'm missin
 
 ### 1.8.1 Updating todo list
 
-### 1.9 Config frame
+## 1.9 Config frame
 Created config frame
 Added slider to change value
 Can right click the number to edit the value in text
 Opened with /cpr
 
-### 1.10 Custom scale
+## 1.10 Custom scale
 Added the option to put in the current user scale and the desired user scale, and work out the difference between them
 Made the config frame draggable
 Made the slider not apply scale until it's released
 Slider was giving some weird decimal values so I made it round to 1dp
+
+## 1.11 Grab visible frame names
+Added a new slash command to get the currently shown frames and print them to the chat (mostly for development)
